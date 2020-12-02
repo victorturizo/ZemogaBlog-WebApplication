@@ -1,0 +1,46 @@
+﻿@page
+@model ZemogaPost.WebApplication.Pages.BlogList.CommentsModel
+@{
+}
+
+
+<br />
+<h2 class="text-info">Add comment </h2>
+<br />
+
+<div class="border container" style="padding:30px">
+    <form method="post">
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Post.Title"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Post.Title" class="form-control"  disabled/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Post.Content"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Post.Content" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Comment.Content"></label>
+            </div>
+            <div class="col-6">
+                <textarea type="" asp-for="Comment.Content" class="form-control" ></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,158 @@
+﻿@page
+@model ZemogaPost.WebApplication.Pages.BlogList.IndexModel
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info"> Blog List</h2>
+    </div>
+    <div class="col-3">
+        @if (Model.userValidator.Profile == "Admin" || Model.userValidator.Profile == "Writer")
+        {
+            <a asp-page="Create" class="btn btn-info form-control text-white">Create New Post</a>
+        }
+
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+
+        <form method="post">
+            @if (Model.Posts.Count() > 0)
+            {
+                @if (true)
+                {
+
+                }
+            <table class=" table table-striped border table-responsive table-responsive-lg">
+                <tr class="table-secondary">
+                    <th>
+                        
+                        @Html.DisplayNameFor(m => m.Posts.FirstOrDefault().Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Posts.FirstOrDefault().Content)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Posts.FirstOrDefault().LastModifiedBy)                    
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Posts.FirstOrDefault().CreatedDate)                      
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Posts.FirstOrDefault().Approved)                 
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Posts.FirstOrDefault().ApprovalDate)                       
+                    </th>
+                    <th>Users Actions</th>
+                </tr>
+
+                @foreach (var item in Model.Posts)
+                {
+
+                    @if (item.Approved == true && Model.userValidator.Profile == "Guess")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Content)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.LastModifiedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.CreatedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Approved)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.ApprovalDate)
+                            </td>
+                            <td class="float-right">
+
+                                @if (Model.userValidator.Profile == "Admin")
+                                {
+                                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white" style="width:64px; font-size:12px">Edit</a>
+                                    <button class="btn btn-danger btn-sm" style="width:64px; font-size:12px">Delete</button>
+                                    <a asp-page="Comments" asp-route-id="@item.Id" class="btn btn-warning btn-sm" style="width:64px; font-size:12px">Comment</a>
+                                    <a asp-page="ViewMorePost" asp-route-id="@item.Id" class="btn btn-primary btn-sm" style="width:64px; font-size:12px">ViewMore</a>
+                                }
+                                @if (Model.userValidator.Profile == "Writer")
+                                {
+                                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white" style="width:64px; font-size:12px">Edit</a>
+                                    <a asp-page="Comments" asp-route-id="@item.Id" class="btn btn-warning btn-sm" style="width:64px; font-size:12px">Comment</a>
+                                    <a asp-page="ViewMorePost" asp-route-id="@item.Id" class="btn btn-primary btn-sm" style="width:64px; font-size:12px">ViewMore</a>
+                                }
+
+                                @if (Model.userValidator.Profile == "Guess")
+                                {
+
+                                    <a asp-page="Comments" asp-route-id="@item.Id" class="btn btn-warning btn-sm" style="width:64px; font-size:12px">Comment</a>
+                                    <a asp-page="ViewMorePost" asp-route-id="@item.Id" class="btn btn-primary btn-sm" style="width:64px; font-size:12px">ViewMore</a>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                    else if (Model.userValidator.Profile == "Admin" || Model.userValidator.Profile == "Writer")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Content)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.LastModifiedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.CreatedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Approved)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.ApprovalDate)
+                            </td>
+                            <td class="float-right">
+
+                                @if (Model.userValidator.Profile == "Admin")
+                                {
+                                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white" style="width:64px; font-size:12px">Edit</a>
+                                    <button class="btn btn-danger btn-sm" style="width:64px; font-size:12px">Delete</button>
+                                    <a asp-page="Comments" asp-route-id="@item.Id" class="btn btn-warning btn-sm" style="width:64px; font-size:12px">Comment</a>
+                                    <a asp-page="ViewMorePost" asp-route-id="@item.Id" class="btn btn-primary btn-sm" style="width:64px; font-size:12px">ViewMore</a>
+                                }
+                                @if (Model.userValidator.Profile == "Writer")
+                                {
+                                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white" style="width:64px; font-size:12px">Edit</a>
+                                    <a asp-page="Comments" asp-route-id="@item.Id" class="btn btn-warning btn-sm" style="width:64px; font-size:12px">Comment</a>
+                                    <a asp-page="ViewMorePost" asp-route-id="@item.Id" class="btn btn-primary btn-sm" style="width:64px; font-size:12px">ViewMore</a>
+                                }
+
+                                @if (Model.userValidator.Profile == "Guess")
+                                {
+
+                                    <a asp-page="Comments" asp-route-id="@item.Id" class="btn btn-warning btn-sm" style="width:64px; font-size:12px">Comment</a>
+                                    <a asp-page="ViewMorePost" asp-route-id="@item.Id" class="btn btn-primary btn-sm" style="width:64px; font-size:12px">ViewMore</a>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+
+
+                }
+            </table>
+            }
+            else
+            {
+                <p>No blogs Avaliable</p>
+            }
+        </form>
+    </div>
+</div>

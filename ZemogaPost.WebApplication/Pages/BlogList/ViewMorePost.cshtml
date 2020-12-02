@@ -1,0 +1,61 @@
+﻿@page
+@model ZemogaPost.WebApplication.Pages.BlogList.ViewMorePostModel
+@{
+}
+
+
+
+<br />
+<div class="row">
+    <div class="col-9">
+        <h2 class="text-info">Post Comments</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
+    </div>
+</div>
+<br />
+
+<div class="border container" style="padding:30px">
+    <form method="post">
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Post.Title"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Post.Title" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Post.Content"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Post.Content" class="form-control" disabled />
+            </div>
+        </div>
+
+        @*<div class="form-group row">
+                <div class="col-3 offset-3">
+                    <input type="submit" value="Update" class="btn btn-primary form-control" />
+                </div>
+                <div class="col-3">
+                    <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
+                </div>
+            </div>*@
+    </form>
+    <div class="list-group">
+        <h5 class="text-primary">Post Comments</h5>
+        @foreach (var item in Model.Comment)
+        {
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">@item.CreatedBy</h5>
+                    <small>3 days ago</small>
+                </div>
+                <p class="mb-1">@item.Content</p>
+                <small>@item.CreatedDate</small>
+            </a>
+        }
+    </div>
+</div>
