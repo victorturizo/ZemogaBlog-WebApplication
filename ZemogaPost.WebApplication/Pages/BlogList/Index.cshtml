@@ -123,7 +123,7 @@
                                 @if (Model.userValidator.Profile == "Admin")
                                 {
                                     <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white" style="width:64px; font-size:12px">Edit</a>
-                                    <button class="btn btn-danger btn-sm" style="width:64px; font-size:12px">Delete</button>
+                                    <button type="submit" asp-route-id="@item.Id" class="btn btn-danger btn-sm" style="width:64px; font-size:12px">Delete</button>
                                     <a asp-page="Comments" asp-route-id="@item.Id" class="btn btn-warning btn-sm" style="width:64px; font-size:12px">Comment</a>
                                     <a asp-page="ViewMorePost" asp-route-id="@item.Id" class="btn btn-primary btn-sm" style="width:64px; font-size:12px">ViewMore</a>
                                 }
@@ -151,7 +151,9 @@
             }
             else
             {
-                <p>No blogs Avaliable</p>
+                <p>No blogs Avaliable, please login as a Admin or Writer to create a new Post</p>
+
+
             }
         </form>
     </div>

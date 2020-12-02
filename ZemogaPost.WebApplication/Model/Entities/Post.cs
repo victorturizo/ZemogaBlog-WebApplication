@@ -14,7 +14,7 @@ namespace ZemogaPost.WebApplication.Model.Entities
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string LastModifiedBy { get; set; }
         public DateTime? ApprovalDate { get; set; }
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
         public ICollection<Comment> Comments { get; set; }
     }
 }

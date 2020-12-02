@@ -43,7 +43,7 @@ namespace ZemogaPost.WebApplication.Pages.BlogList
                     Profile = HttpContext.Session.GetString(SessionRole)
                 };
                 client.BaseAddress = new Uri("https://localhost:44327/api/");
-                var response = await client.PostAsJsonAsync("https://localhost:44327/api/BlogPost/GetPostById", Id);
+               using  var response = await client.PostAsJsonAsync("https://localhost:44327/api/BlogPost/GetPostById", Id);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -69,11 +69,11 @@ namespace ZemogaPost.WebApplication.Pages.BlogList
                 Post.Approved = Post.Approved;
                 Post.LastModifiedBy = "vhturizo";
                 Post.ApprovalDate = Post.Approved != false ? DateTime.Now : Post.ApprovalDate;
-                Post.UserId = PostApi.UserId;
+                //Post.UserId = PostApi.UserId;
                 Post.CreatedDate = Post.CreatedDate;
                 Post.Comments = Post.Comments;
               
-                var response = await client.PostAsJsonAsync("https://localhost:44327/api/BlogPost/UpdatePost", Post);
+                using var response = await client.PostAsJsonAsync("https://localhost:44327/api/BlogPost/UpdatePost", Post);
 
                 if (response.IsSuccessStatusCode)
                 {

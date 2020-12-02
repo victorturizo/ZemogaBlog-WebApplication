@@ -40,7 +40,7 @@ namespace ZemogaPost.WebApplication.Pages.BlogList
                 Post.CreatedBy = HttpContext.Session.GetString(SessionUserName);
                 Post.Approved = false;
                 Post.LastModifiedBy = HttpContext.Session.GetString(SessionUserName);
-                Post.UserId = 1;
+                //Post.UserId = 1;
                 var response = await client.PostAsJsonAsync("https://localhost:44327/api/BlogPost/SavePost", Post);
 
                 if (response.IsSuccessStatusCode)

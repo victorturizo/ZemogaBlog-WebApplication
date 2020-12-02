@@ -32,6 +32,9 @@ namespace ZemogaPost.WebApplication.Pages.BlogList
         public IEnumerable<Post>  Posts { get; set; }
 
         [BindProperty]
+        public Post Post { get; set; }
+
+        [BindProperty]
         public User userValidator { get; set; }
         public async Task OnGet(User user)
         {
@@ -48,6 +51,30 @@ namespace ZemogaPost.WebApplication.Pages.BlogList
                 if (response.IsSuccessStatusCode)
                 {
                     Posts = JsonConvert.DeserializeObject<IEnumerable<Post>>(await response.Content.ReadAsStringAsync());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task OnPost(Post Post)
+        {
+            try
+            {
+
+                userValidator = new User()
+                {
+                    Username = HttpContext.Session.GetString(SessionUserName),
+                    Profile = HttpContext.Session.GetString(SessionRole)
+                };
+                var response = await client.PostAsJsonAsync("https://localhost:44327/api/BlogPost/DeletePost", Post.Id);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Page();
                 }
             }
             catch (Exception ex)
